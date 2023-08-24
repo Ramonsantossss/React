@@ -64,10 +64,10 @@ return (
       <section className="section-mangas">
         <div className="header"># Acabaram de Sair!!!</div>
         <div className="mangas-container">
-          {info.map((manga, index) => (
+          {setAnimesRecente.map((manga, index) => (
             <a href="#" key={index}>
               <div className="manga">
-                <div className="cover"><img src={manga.image} alt={manga.name} /></div>
+                <div className="cover"><img src=`${manga.image}` alt={manga.name} /></div>
                 <div className="title">{manga.name}</div>
                 <div className="chapters">Score: {manga.score}</div>
               </div>
@@ -78,10 +78,10 @@ return (
       <section className="section-mangas">
         <div className="header"># Recomendações</div>
         <div className="mangas-container">
-          {data.map((manga, index) => (
+          {setAnimesPopular.map((manga, index) => (
             <a href="#" key={index}>
               <div className="manga">
-                <div className="cover"><img src={manga.image} alt={manga.name} /></div>
+                <div className="cover"><img src=`${manga.image}` alt={manga.name} /></div>
                 <div className="title">{manga.name}</div>
                 <div className="chapters">Score: {manga.score}</div>
               </div>
@@ -95,10 +95,10 @@ return (
         Destaques
       </div>
       <section className="mangas-container">
-        {zera.map((manga, index) => (
+        {setAnimesTopes.map((manga, index) => (
           <a href="#" key={index}>
             <div className="manga highlight">
-              <div className="cover"><img src={manga.image} alt={manga.name} /></div>
+              <div className="cover"><img src=`${manga.image}` alt={manga.name} /></div>
               <div className="title">{manga.name}</div>
               <div className="chapters">Score: {manga.score}</div>
             </div>
