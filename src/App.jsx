@@ -3,33 +3,49 @@ import axios from 'axios';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [info, setInfo] = useState([]);
-  const [data, setData] = useState([]);
-  const [zera, setZera] = useState([]);
+  const [info, getMoreRecente] = useState([]);
+  const [data, getMorePopular] = useState([]);
+  const [zera, getMoreTopes] = useState([]);
 
 useEffect(() => {
-  async function fetchData() {
-    try {
-      const response = await axios.get('https://ruby-careful-skunk.cyclic.app/recents');
-      const topesResponse = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
-      const topesdois = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
-      
-      if (response.status === 200 && topesResponse.status === 200 && topesdois.status === 200) {
-        const dai = response.data.mangas;
-        setInfo(dai.slice(0, 15));
-        const topesData = topesResponse.data;
-        setData(topesData.slice(0, 15));
-        const mai = topesdois.data;
-        setZera(mai.slice(0, 15));
-      } else {
-        console.error('Error fetching data:', response.statusText, topesResponse.statusText, topesdois.statusText);
+    async function getMoreRecente() {
+      try {
+        const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/recents/1');
+        setAnimesPopular(data.mangas.slice(0, 15));
+        /* console.log(data.slice(0, 15)); */
+      } catch (err) {
+        console.log("Err on get more popular", err);
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
     }
-  }
+    
+    async function getMorePopular() {
+      try {
+        const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
+        setAnimesPopular(data.slice(0, 15));
+        /* console.log(data.slice(0, 15)); */
+      } catch (err) {
+        console.log("Err on get more popular", err);
+      }
+    }
+    
+    async function getMoreTopes() {
+      try {
+        const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
+        setAnimesPopular(data.slice(0, 15));
+        /* console.log(data.slice(0, 15)); */
+      } catch (err) {
+        console.log("Err on get more popular", err);
+      }
+    }
+    
+    async function getResultsOfAnimes() {
+      await getMorePopular();
+      await getRecentReleases();
+      await getMoreTopes();
+    }
 
-  fetchData();
+    getResultsOfAnimes();
+
 }, []);
 
 
