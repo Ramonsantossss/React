@@ -7,30 +7,31 @@ function App() {
   const [data, setData] = useState([]);
   const [zera, setZera] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get('https://ruby-careful-skunk.cyclic.app/recents');
-        const topesResponse = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
-        const topesdois = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
-        
-        if (response.ok && topesResponse.ok && topesdois.ok) {
-          const dai = response.data.mangas;
-          setInfo(dai);
-          const topesData = topesResponse.data;
-          setData(topesData);
-          const mai = topesdois.data;
-          setZera(mai);
-        } else {
-          // Handle error here
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
+useEffect(() => {
+  async function fetchData() {
+    try {
+      const response = await axios.get('https://ruby-careful-skunk.cyclic.app/recents');
+      const topesResponse = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
+      const topesdois = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
+      
+      if (response.status === 200 && topesResponse.status === 200 && topesdois.status === 200) {
+        const dai = response.data.mangas;
+        setInfo(dai.slice(0, 15));
+        const topesData = topesResponse.data;
+        setData(topesData.slice(0, 15));
+        const mai = topesdois.data;
+        setZera(mai.slice(0, 15));
+      } else {
+        console.error('Error fetching data:', response.statusText, topesResponse.statusText, topesdois.statusText);
       }
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
+  }
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
 return (
 <>
