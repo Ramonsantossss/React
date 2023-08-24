@@ -1,68 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-//import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [apiData, setApiData] = useState({
-    a: [],
-    aa: [],
-    aaa: []
-  });
+  const [info, setInfo] = useState([]);
+  const [data, setData] = useState([]);
+  const [zera, setZera] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const recentResponse = await axios.get('https://ruby-careful-skunk.cyclic.app/recents');
-        const top1Response = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
-        const top2Response = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
+        const response = await axios.get('https://ruby-careful-skunk.cyclic.app/recents');
+        const topesResponse = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
+        const topesdois = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
         
-        setApiData({
-          a: recentResponse,
-          aa: top1Response,
-          aaa: top2Response
-        });
+        if (response.ok && topesResponse.ok && topesdois.ok) {
+          const dai = response.data.mangas;
+          setInfo(dai);
+          const topesData = topesResponse.data;
+          setData(topesData);
+          const mai = topesdois.data;
+          setZera(mai);
+        } else {
+          // Handle error here
+        }
       } catch (error) {
-        console.error('Erro ao buscar dados:', error);
+        console.error('Error fetching data:', error);
       }
     }
 
     fetchData();
   }, []);
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+return (
+<>
+  <div>
+    <form action="/search" method="get">
+      <header className="header-main">
+        {/* Rest of your header code */}
+      </header>
+    </form>
+    <section className="genders">
+      <div className="genders-div">
+        {/* Rest of your gender links */}
       </div>
-      <div className="api-results">
-        <h2>API Data</h2>
-        <div>
-          <h3>Recent Data</h3>
-          <pre>{JSON.stringify(apiData.a, null, 2)}</pre>
+    </section>
+    <main>
+      <section className="section-mangas">
+        <div className="header"># Acabaram de Sair!!!</div>
+        <div className="mangas-container">
+          {info.map((manga, index) => (
+            <a href="#" key={index}>
+              <div className="manga">
+                <div className="cover"><img src={manga.image} alt={manga.name} /></div>
+                <div className="title">{manga.name}</div>
+                <div className="chapters">Score: {manga.score}</div>
+              </div>
+            </a>
+          ))}
         </div>
-        <div>
-          <h3>Top 1 Data</h3>
-          <pre>{JSON.stringify(apiData.aa, null, 2)}</pre>
+      </section>
+      <section className="section-mangas">
+        <div className="header"># Recomendações</div>
+        <div className="mangas-container">
+          {data.map((manga, index) => (
+            <a href="#" key={index}>
+              <div className="manga">
+                <div className="cover"><img src={manga.image} alt={manga.name} /></div>
+                <div className="title">{manga.name}</div>
+                <div className="chapters">Score: {manga.score}</div>
+              </div>
+            </a>
+          ))}
         </div>
-        <div>
-          <h3>Top 2 Data</h3>
-          <pre>{JSON.stringify(apiData.aaa, null, 2)}</pre>
-        </div>
+      </section>
+    </main>
+    <footer>
+      <div className="header">
+        Destaques
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+      <section className="mangas-container">
+        {zera.map((manga, index) => (
+          <a href="#" key={index}>
+            <div className="manga highlight">
+              <div className="cover"><img src={manga.image} alt={manga.name} /></div>
+              <div className="title">{manga.name}</div>
+              <div className="chapters">Score: {manga.score}</div>
+            </div>
+          </a>
+        ))}
+      </section>
+    </footer>
+    <div className="modal-manga">
+      <div className="modal-manga-content">
+      </div>
+    </div>
+  </div>
+  </>
+);
+
 }
 
 export default App;
