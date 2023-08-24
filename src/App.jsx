@@ -3,15 +3,15 @@ import axios from 'axios';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [info, getMoreRecente] = useState([]);
-  const [data, getMorePopular] = useState([]);
-  const [zera, getMoreTopes] = useState([]);
+  const [info, setAnimesRecente] = useState([]);
+  const [data, setAnimesPopular] = useState([]);
+  const [zera, setAnimesTopes] = useState([]);
 
 useEffect(() => {
     async function getMoreRecente() {
       try {
         const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/recents/1');
-        setAnimesPopular(data.mangas.slice(0, 15));
+        setAnimesRecente(data.mangas.slice(0, 15));
         /* console.log(data.slice(0, 15)); */
       } catch (err) {
         console.log("Err on get more popular", err);
@@ -31,7 +31,7 @@ useEffect(() => {
     async function getMoreTopes() {
       try {
         const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
-        setAnimesPopular(data.slice(0, 15));
+        setAnimesTopes(data.slice(0, 15));
         /* console.log(data.slice(0, 15)); */
       } catch (err) {
         console.log("Err on get more popular", err);
