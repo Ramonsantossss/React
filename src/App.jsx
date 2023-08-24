@@ -8,35 +8,33 @@ function App() {
   const [zera, setAnimesTopes] = useState([]);
 
 useEffect(() => {
-    async function getMoreRecente() {
-      try {
-        const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/recents/1');
-        setAnimesRecente(data.mangas.slice(0, 15));
-        /* console.log(data.slice(0, 15)); */
-      } catch (err) {
-        console.log("Err on get more popular", err);
-      }
-    }
-    
-    async function getMorePopular() {
-      try {
-        const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
-        setAnimesPopular(data.slice(0, 15));
-        /* console.log(data.slice(0, 15)); */
-      } catch (err) {
-        console.log("Err on get more popular", err);
-      }
-    }
-    
-    async function getMoreTopes() {
-      try {
-        const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
-        setAnimesTopes(data.slice(0, 15));
-        /* console.log(data.slice(0, 15)); */
-      } catch (err) {
-        console.log("Err on get more popular", err);
-      }
-    }
+async function getMoreRecente() {
+  try {
+    const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/recents/1');
+    setAnimesRecente(data.slice(0, 15));
+  } catch (err) {
+    console.log("Erro ao obter mais recentes", err);
+  }
+}
+
+async function getMorePopular() {
+  try {
+    const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/1');
+    setAnimesPopular(data.slice(0, 15));
+  } catch (err) {
+    console.log("Erro ao obter mais populares", err);
+  }
+}
+
+async function getMoreTopes() {
+  try {
+    const { data } = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
+    setAnimesTopes(data.slice(0, 15));
+  } catch (err) {
+    console.log("Erro ao obter mais topes", err);
+  }
+}
+
     
     async function getResultsOfAnimes() {
       await getMorePopular();
