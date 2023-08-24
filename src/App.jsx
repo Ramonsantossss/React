@@ -20,9 +20,9 @@ function App() {
         const top2Response = await axios.get('https://ruby-careful-skunk.cyclic.app/top/2');
         
         setApiData({
-          a: recentResponse.data,
-          aa: top1Response.data,
-          aaa: top2Response.data
+          a: recentResponse,
+          aa: top1Response,
+          aaa: top2Response
         });
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
