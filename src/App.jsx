@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles.css'; // Substitua 'styles.css' pelo caminho correto até o seu arquivo CSS
+
 
 function App() {
   const [count, setCount] = useState(0);
