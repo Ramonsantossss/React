@@ -67,7 +67,7 @@ return (
           {setAnimesRecente.map((manga, index) => (
             <a href="#" key={index}>
               <div className="manga">
-                <div className="cover"><img src=`${manga.image}` alt={manga.name} /></div>
+                <div className="cover"><img src={manga.image} alt={manga.name} /></div>
                 <div className="title">{manga.name}</div>
                 <div className="chapters">Score: {manga.score}</div>
               </div>
@@ -81,7 +81,7 @@ return (
           {setAnimesPopular.map((manga, index) => (
             <a href="#" key={index}>
               <div className="manga">
-                <div className="cover"><img src=`${manga.image}` alt={manga.name} /></div>
+                <div className="cover"><img src={manga.image} alt={manga.name} /></div>
                 <div className="title">{manga.name}</div>
                 <div className="chapters">Score: {manga.score}</div>
               </div>
@@ -98,7 +98,7 @@ return (
         {setAnimesTopes.map((manga, index) => (
           <a href="#" key={index}>
             <div className="manga highlight">
-              <div className="cover"><img src=`${manga.image}` alt={manga.name} /></div>
+              <div className="cover"><img src={manga.image} alt={manga.name} /></div>
               <div className="title">{manga.name}</div>
               <div className="chapters">Score: {manga.score}</div>
             </div>
