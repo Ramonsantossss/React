@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-//import './App.css'
-import styles from './home.module.css';
+import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Certifique-se de importar o Link corretamente
+//import router from 'alguma-lib-de-roteamento'; // Certifique-se de importar a biblioteca de roteamento correta
+import reactLogo from './assets/react.svg';
+import viteLogo from './assets/vite.svg'; // Certifique-se de fornecer o caminho correto para os logos
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
-return (
+  return (
     <main className={`${styles.main}`}>
       <h1 className={`${styles.title}`}>Procurar</h1>
       <form
@@ -18,7 +19,7 @@ return (
           const query = event.target[0].value;
 
           if (query.trim().length) {
-            
+          //  router.push(`/search?q=${query}`);
           }
         }}
       >
@@ -35,7 +36,7 @@ return (
           <Link
             className={`${styles.link}`}
             key={item?.id}
-            href={`/anime/${item?.id}`}
+            to={`/anime/${item?.id}`} // Use "to" em vez de "href"
           >
             <li className="flex flex-col justify-between w-[200px]">
               <img
@@ -48,7 +49,6 @@ return (
           </Link>
         ))}
       </ul>
-
     </main>
   );
 }
@@ -60,4 +60,4 @@ export async function getServerSideProps() {
   return { props: { animes } };
 }
 
-export default App
+export default App;
