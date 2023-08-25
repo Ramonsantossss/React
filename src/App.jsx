@@ -59,6 +59,5 @@ export async function getServerSideProps() {
 
   return { props: { animes } };
 }
-}
 
 export default App
