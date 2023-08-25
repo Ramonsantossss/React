@@ -1,0 +1,77 @@
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 24px; /* Decreased top padding to 8px */
+  background-image: linear-gradient(45deg, darkred, black, darkred);
+  background-size: 200% 200%;
+  animation: gradientAnimation 6s linear infinite;
+}
+
+@keyframes gradientAnimation {
+  0%, 25% {
+    background-position: 0% 0%;
+  }
+  25%, 75% {
+    background-position: 100% 100%;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: white; /* Cor do título dourado escuro */
+}
+
+.form {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  outline: none;
+  border: 2px solid gray; /* Cor da borda dourada escuro */
+  background-color: #1f1f1f; /* Cor de fundo do campo de entrada */
+  color: #ffffff;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  border-color: #8b7500; /* Cor da borda ao focar (dourado mais escuro) */
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr); /* Altere para 3 colunas */
+  gap: 8px;
+  justify-content: center;
+}
+
+.link {
+  background-color: #1f1f1f; /* Cor de fundo refinada */
+  border-radius: 4px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.link:hover {
+  background-color: #333333; /* Cor de fundo ao passar o mouse (dourado mais escuro) */
+  box-shadow: 0 2px 4px rgba(255, 215, 0, 0.5); /* Sombra dourada escura */
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.text {
+  padding: 8px;
+  color: #ffffff;
+  font-size: 16px;
+}
