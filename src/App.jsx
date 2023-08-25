@@ -50,7 +50,6 @@ async function getMoreTopes() {
 
 
 return (
-<>
   <div>
     <form action="/search" method="get">
       <header className="header-main">
@@ -113,7 +112,6 @@ return (
       </div>
     </div>
   </div>
-  </>
 );
 
 }
